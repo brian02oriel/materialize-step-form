@@ -37,14 +37,15 @@ class FormStepper extends Component {
     country:'',
     cell:'',
     email: '',
-    occupation: '',
-    bio:''
+    pid_front: '',
+    pid_back:'',
+    presidence: ''
 }
 
 getStepContent(step) {
-  const {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, occupation, bio} = this.state;
-  const values = {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, occupation, bio};
-  console.log(step);  
+  const {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, pid_front, pid_back, presidence} = this.state;
+  const values = {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence};
+  //console.log(step);  
   switch (step) {
       case 0: 
         return(

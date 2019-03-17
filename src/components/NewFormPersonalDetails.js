@@ -51,12 +51,12 @@ export default class NewFormPersonalDetails extends Component {
             <div className='row'>
                 
                 <div className='col s6'> 
-                    <button onClick = {this.back} className="waves-effect waves-light btn">
+                    <button onClick = {this.back} className="waves-effect waves-light btn deep-purple darken-3">
                         Back
                     </button>
                 </div>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className="waves-effect waves-light btn">
+                    <button onClick = {this.continue} className="waves-effect waves-light btn deep-purple darken-3">
                         Continue
                     </button>
                 </div>

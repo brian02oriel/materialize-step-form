@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Countries from './Countries';
 import M from "materialize-css";
-
+import '../InputFields.css';
 
 export default class FormUserDetails extends Component {
     componentDidMount(){
@@ -22,7 +22,7 @@ export default class FormUserDetails extends Component {
       <div className='container'> 
         <Fragment>
             <div className='row'>
-                <div className='input-field col s6'>
+                <div className='input-field col s6 '>
                     <input onChange = {handleChange('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required/>
                     <label for="first_name">First Name</label>
                 </div>
@@ -79,7 +79,7 @@ export default class FormUserDetails extends Component {
             </div>  
             <div className='row'>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className="waves-effect waves-light btn">
+                    <button onClick = {this.continue} className="waves-effect waves-light btn deep-purple darken-3">
                         Continue
                     </button>
                 </div>
@@ -89,7 +89,6 @@ export default class FormUserDetails extends Component {
     )
   }
 }
-
 
 
 
