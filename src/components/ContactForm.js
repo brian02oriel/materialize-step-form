@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Countries from './Countries';
 import M from "materialize-css";
 
-export default class NewFormPersonalDetails extends Component {
+export default class ContactForm extends Component {
     componentDidMount(){
     
         M.AutoInit();
@@ -27,17 +27,17 @@ export default class NewFormPersonalDetails extends Component {
         <Fragment>
             <div className="row">
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required/>
+                    <input onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
                     <label for="direction">Residence</label>
                 </div>
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required/>
+                    <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
                     <label for="city">City</label>
                 </div>
              </div>
             <div className='row'>
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" required/>
+                    <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" required placeholder="000000"/>
                     <label for="postal">Postal Code</label>
                 </div>
                 <div className='input-field col s6'>

@@ -7,9 +7,10 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
+
 //import FormUserDetails from './FormUserDetails';
-import NewFormUserDetails from './NewFormUserDetails';
-import NewFormPersonalDetails from './NewFormPersonalDetails';
+import PersonalForm from './PersonalForm';
+import ContactForm from './ContactForm';
 import FormRequiredDocs from './FormRequiredDocs';
 import Confirm from './Confirm'
 import Success from './Success'
@@ -37,7 +38,7 @@ class FormStepper extends Component {
     country:'',
     cell:'',
     email: '',
-    pid_front: '',
+    pid_front: '', //third form
     pid_back:'',
     presidence: ''
 }
@@ -49,7 +50,7 @@ getStepContent(step) {
   switch (step) {
       case 0: 
         return(
-          <NewFormUserDetails 
+          <PersonalForm 
           nextStep = {this.nextStep}
           handleChange = {this.handleChange}
           values = {values}
@@ -57,7 +58,7 @@ getStepContent(step) {
         )
       case 1:
         return(
-          <NewFormPersonalDetails
+          <ContactForm
           nextStep = {this.nextStep}
           prevStep = {this.prevStep}
           handleChange = {this.handleChange}
@@ -134,7 +135,7 @@ handleChange = input => e => {
           })}
         </Stepper>
         <div className="row" style={contentStyle}>
-        <h4> <span className = "deep-purple-text text-darken-3"> Tu cuenta puede tardar hasta 4 días hábiles en ser aprobada </span></h4>
+        <h4><span className = "deep-purple-text text-darken-3"> Tu cuenta puede tardar hasta 4 días hábiles en ser aprobada</span></h4>
             <div className="col s12">
               <Typography >{this.getStepContent(activeStep)}</Typography>
             </div>
@@ -150,10 +151,6 @@ const styles = {
     alignContent: 'center',
     justifyContent: 'center'
   },
-
-  contentStyle: {
-
-  }
 }
 
 export default FormStepper;

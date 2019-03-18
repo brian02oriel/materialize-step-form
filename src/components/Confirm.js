@@ -1,10 +1,4 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Button from '@material-ui/core/Button';
-
+import React, { Component, Fragment } from 'react'
 
 export default class Confirm extends Component {
     continue = e =>{ //e = event
@@ -18,89 +12,64 @@ export default class Confirm extends Component {
     }
 
   render() {
-      const { values:{ firstName, lastName, email, occupation, city, bio} } = this.props;
+      const { values:{ firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence} } = this.props;
     return (
-        <Grid container spacing={24} 
-        alignContent = 'center'
-        alignItems = 'center'
-        justify = 'center'
-       > 
-          
-        <React.Fragment>
-        <Grid container item xs={12} spacing={24}
-             alignContent = 'space-around'
-             alignItems = 'center'
-             justify = 'flex-end'
-             direction='column'
-             style = {styles.gridStyle}>
-              <List>  
-                    <ListItem>
-                        First Name
-                        <ListSubheader>
-                            {firstName}
-                        </ListSubheader>
-                    </ListItem>
-                    <ListItem>
-                        Last Name
-                        <ListSubheader>
-                            {lastName}
-                        </ListSubheader>
-                    </ListItem>
-                    <ListItem>
-                        Email
-                        <ListSubheader>
-                            {email}
-                        </ListSubheader>
-                    </ListItem>
-                    <ListItem>
-                       Occupation
-                        <ListSubheader>
-                            {occupation}
-                        </ListSubheader>
-                    </ListItem>
-                    <ListItem>
-                      City
-                        <ListSubheader>
-                            {city}
-                        </ListSubheader>
-                    </ListItem>
-                    <ListItem>
-                        Bio
-                        <ListSubheader>
-                            {bio}
-                        </ListSubheader>
-                    </ListItem>
-                   
-                </List>
-             </Grid>
+        <div className='container'>
+                <Fragment>
+                    <div className='row'>
+                        <div className='col s12 m6'>
+                            <ul className="collection with-header">
+                                <li className="collection header"><h4>Personal info</h4></li>
+                                <li className="collection-item"> {firstName} </li>
+                                <li className="collection-item"> {lastName} </li>
+                                <li className="collection-item"> {birth} </li>
+                                <li className="collection-item"> {gender} </li>
+                                <li className="collection-item"> {nationality} </li>
+                                <li className="collection-item"> {em_country} </li>
+                                <li className="collection-item"> {id} </li>
+                                <li className="collection-item"> {id_number} </li>
+                            </ul>
+                        </div>
+                        <div className='col s12 m6'>
+                            <ul className="collection with-header">
+                                <li className="collection header"><h4>Contact info</h4></li>
+                                <li className="collection-item"> {direction} </li>
+                                <li className="collection-item"> {city} </li>
+                                <li className="collection-item"> {postal} </li>
+                                <li className="collection-item"> {country} </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div className="row">
+                        <div className="col s12">
+                        <ul className="collection with-header">
+                                <li className="collection header"><h4>Required Documentation</h4></li>
+                                <li className="collection-item"> {pid_front} </li>
+                                <li className="collection-item"> {pid_back} </li>
+                                <li className="collection-item"> {presidence} </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
                
-
-            <Grid xs={12}
-             alignContent = 'space-around'
-             alignItems = 'flex-start'
-             justify = 'flex-start'
-             direction='row'
-            > 
-                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.back}>
-                    Back
-                </Button>
-
-                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.continue}>
+            <div className='row'>
+                <div className='col s6'> 
+                    <button onClick = {this.back} className="waves-effect waves-light btn deep-purple darken-3">
+                        Back
+                    </button>
+                </div>
+                <div className='col s6'> 
+                    <button onClick = {this.continue} className="waves-effect waves-light btn deep-purple darken-3">
                     Confirm & Continue
-                </Button>
-            </Grid>
+                    </button>
+                </div>
 
-        </React.Fragment>
-        </Grid>
+            </div>
+        </Fragment>
+        </div>
+        
     )
   }
 }
 
-const styles = {
-    button: {
-        margin: 15
-    },
-    gridStyle: {
-        margin: 15
-    }
-}

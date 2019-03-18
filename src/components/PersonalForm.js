@@ -1,14 +1,20 @@
 import React, { Component, Fragment } from 'react'
 import Countries from './Countries';
 import M from "materialize-css";
-import '../InputFields.css';
 
-export default class FormUserDetails extends Component {
+
+export default class PersonalForm extends Component {
     componentDidMount(){
     
         M.AutoInit();
         //let selects = document.querySelectorAll('select');
         //M.FormSelect.init(selects, {});
+        /*let picker = document.querySelectorAll('.datepicker');
+        M.Datepicker.init(picker, {
+            format: 'yyyy-mm-dd',
+            selectMonths:true,
+            selectYears: 15
+        });*/
     }
     continue = e =>{ //e = event
         e.preventDefault();
@@ -23,17 +29,17 @@ export default class FormUserDetails extends Component {
         <Fragment>
             <div className='row'>
                 <div className='input-field col s6 '>
-                    <input onChange = {handleChange('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required/>
+                    <input onChange = {handleChange('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
                     <label for="first_name">First Name</label>
                 </div>
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('lastName')}  id="last_name" value = {values.lastName} type="text" className="validate" required/>
+                    <input onChange = {handleChange('lastName')}  id="last_name" value = {values.lastName} type="text" className="validate" required placeholder="Doe"/>
                     <label for="last_name">Last Name</label>
                 </div>
             </div>  
             <div className='row'>
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('birth')} id="birth" value = {values.birth} type="text" className="datepicker" required/>
+                    <input onChange = {handleChange('birth')} id="birth" value = {values.birth} type="date"  required/>
                     <label for="birth">Birthday</label>
                 </div>
                 <div className='input-field col s6' >
@@ -73,7 +79,7 @@ export default class FormUserDetails extends Component {
                 </div>
 
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('id_number')}  id="id_number" value = {values.id_number} type="text" className="validate" required/>
+                    <input onChange = {handleChange('id_number')}  id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                     <label for="id_number">Number</label>
                 </div>
             </div>  
