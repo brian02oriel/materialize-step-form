@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import TextField from '@material-ui/core/TextField';
 import Countries from './Countries';
 import M from "materialize-css";
 
@@ -28,19 +29,29 @@ export default class PersonalForm extends Component {
       <div className='container'> 
         <Fragment>
             <div className='row'>
-                <div className='input-field col s6 '>
-                    <input onChange = {handleChange('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
+                <div className='col s12 '>
                     <label for="first_name">First Name</label>
+                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
-                <div className='input-field col s6'>
-                    <input onChange = {handleChange('lastName')}  id="last_name" value = {values.lastName} type="text" className="validate" required placeholder="Doe"/>
-                    <label for="last_name">Last Name</label>
+            </div>  
+            <div className='row'>
+                <div className='col s6 '>
+                    <label for="PLast_name">Paternal Surname</label>
+                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('lastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
+                </div>
+                <div className='col s6'>
+                    <label for="MLast_name">Maternal Surname</label>
+                    <input  pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('lastName')}  id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row'>
                 <div className='input-field col s6'>
                     <input onChange = {handleChange('birth')} id="birth" value = {values.birth} type="date"  required/>
                     <label for="birth">Birthday</label>
+                    
                 </div>
                 <div className='input-field col s6' >
                     <select onChange = {handleChange('gender')}  value = {values.gender} required>
@@ -79,8 +90,8 @@ export default class PersonalForm extends Component {
                 </div>
 
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('id_number')}  id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                     <label for="id_number">Number</label>
+                    <input onChange = {handleChange('id_number')}  id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                 </div>
             </div>  
             <div className='row'>
