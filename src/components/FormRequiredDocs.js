@@ -1,12 +1,42 @@
 import React, { Component, Fragment } from 'react'
 import M from "materialize-css";
 
+
+
 export default class FormRequiredDocs extends Component {
+    state={
+        pid_type: this.props.values.id
+    }
   componentDidMount(){
     
     M.AutoInit();
     //let selects = document.querySelectorAll('select');
     //M.FormSelect.init(selects, {});
+    
+}
+
+handleIdDocs() {
+    var type = this.props.values.id;
+    if( type === 'dni'){
+        return(
+            <div className="card">
+            <div className="card-content">
+                <span class="card-title"> Identity Check (back)</span>
+                <p className="deep-orange-text text-darken-4"> Upload a back picture of your DNI or Passport with good resolution</p>
+            </div>
+            <div className="card-action">
+              <div className="btn deep-purple darken-3">
+                  <span>Upload File</span>
+                  <input type="file"></input>
+              </div>
+               <input onChange = {this.props.handleChange('pid_back')} id="pid_back" value = {this.props.values.pid_back} type="text" className="file-path validate" required/>
+            </div>
+
+        </div>
+        )
+    }
+        
+    
 }
 
 continue = e =>{ //e = event
@@ -42,20 +72,7 @@ back = e => {
               </div>
 
               <div className='file-field input-field col s12 m6'>
-                  <div className="card">
-                      <div className="card-content">
-                          <span class="card-title"> Identity Check (back)</span>
-                          <p className="deep-orange-text text-darken-4"> Upload a back picture of your DNI or Passport with good resolution</p>
-                      </div>
-                      <div className="card-action">
-                        <div className="btn deep-purple darken-3">
-                            <span>Upload File</span>
-                            <input type="file"></input>
-                        </div>
-                         <input onChange = {handleChange('pid_back')} id="pid_back" value = {values.pid_back} type="text" className="file-path validate" required/>
-                      </div>
-
-                  </div>
+                     {this.handleIdDocs()} 
               </div>
           </div>  
           <div className="row">

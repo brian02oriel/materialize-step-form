@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Countries from './Countries';
 import M from "materialize-css";
-import $ from 'jquery';
-
+//import $ from 'jquery';
+//import "./Validator";
 
 
 export default class PersonalForm extends Component {
     state = {
         id_selection:'',
-        buttonState: 'disabled',
+        buttonState: '',
         validation: 0
     }
 
@@ -18,45 +18,28 @@ export default class PersonalForm extends Component {
     }
 
   
-    Validate(){
-      /*  var decision = false;
-        var invalids = 0;
-        invalids = document.getElementsByClassName("invalid");
-        var inputs = document.querySelectorAll('input');
-        var select = document.querySelectorAll('select');
-        [].slice.call(inputs).forEach(function(input){
-            if(!input.value.trim){
-                this.setState({buttonState: "enable"})
-            }
-        })*/
-
-        let valid = document.getElementsByClassName("valid").length;
-        console.log(valid);
-        if(valid >= 1){
-            this.setState({buttonState: " "})
-            console.log(this.state.buttonState);
-        }
-        
-
-       // console.log(inputs);
-        
-    }
 
     continue = e =>{ //e = event
         e.preventDefault();
         this.props.nextStep();
     }
+    handleValidation = (e) =>{
+        console.log(e);
+
+    }
 
     handleSelect= e =>{
         e.preventDefault();
-        this.props.handleChange('id');
+        //this.props.handleChange('id');
+        //console.log(this.props.values.id)
         this.setState({id_selection: e.target.value});
     }
 
     handleIdentity(handleChange, values){
         
         var selection = this.state.id_selection;
-        console.log(selection)
+       
+       console.log(selection);
         if(selection === 'dni') {
             return(
                 <div className='col s6'>
@@ -83,25 +66,25 @@ export default class PersonalForm extends Component {
             <div className='row'>
                 <div className='col s12 '>
                     <label for="first_name">First Name(*)</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')}  onBlur = {this.Validate()} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
+                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')}  id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row'>
                 <div className='col s6 '>
                     <label for="PLast_name">Paternal Surname(*)</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {this.Validate} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s6'>
                     <label for="MLast_name">Maternal Surname(*)</label>
-                    <input  pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')} onBlur = {this.Validate} id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <input  pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')}  id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row'>
                 <div className='input-field col s6'>
-                    <input onChange = {handleChange('birth')} id="birth" value = {values.birth} onBlur = {this.Validate} type="date"  required/>
+                    <input onChange = {handleChange('birth')} id="birth" value = {values.birth}  type="date"  required/>
                     <label for="birth">Birthday(*)</label>
                     
                 </div>
@@ -124,7 +107,7 @@ export default class PersonalForm extends Component {
                 </div>
 
                 <div className='input-field col s6'>
-                     <select onChange = {this.handleSelect}  value = {values.id} required >
+                     <select onChange = {handleChange('id')} onChangeCapture= {this.handleSelect} value = {values.id} required >
                         <option value="" disabled>Choose your option</option>
                         <option value="dni">DNI</option>
                         <option value="passport">Passport</option>
