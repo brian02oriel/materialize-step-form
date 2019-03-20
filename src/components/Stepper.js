@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-//import PropTypes from 'prop-types';
-//import { withStyles } from '@material-ui/core/styles';
+
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-
-//import FormUserDetails from './FormUserDetails';
 import PersonalForm from './PersonalForm';
 import ContactForm from './ContactForm';
 import FormRequiredDocs from './FormRequiredDocs';
@@ -17,15 +14,17 @@ import Success from './Success'
 
 
 function getSteps() {
-  return ['Personal Info', 'Contact Info', 'Required Documentation', 'Confirm'];
+  return ['Personal Info(Legal Representative)', 'Contact Info', 'Required Documentation', 'Confirm'];
 }
 
 class FormStepper extends Component {
   
   state = {
     step:0,
+   
     firstName: '', //first form
-    lastName:'',
+    PlastName:'',
+    MlastName:'',
     birth: '',
     gender: '',
     nationality: '',
@@ -41,11 +40,13 @@ class FormStepper extends Component {
     pid_front: '', //third form
     pid_back:'',
     presidence: ''
+
+    
 }
 
 getStepContent(step) {
-  const {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, pid_front, pid_back, presidence} = this.state;
-  const values = {firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence};
+  const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, pid_front, pid_back, presidence} = this.state;
+  const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence};
   //console.log(step);  
   switch (step) {
       case 0: 
@@ -135,7 +136,8 @@ handleChange = input => e => {
           })}
         </Stepper>
         <div className="row" style={contentStyle}>
-        <h4><span className = "deep-purple-text text-darken-3"> Tu cuenta puede tardar hasta 4 días hábiles en ser aprobada</span></h4>
+        <h4 className="center-align"><span className = "deep-purple-text text-darken-3 center-align"> Tu cuenta puede tardar hasta 4 días hábiles en ser aprobada</span></h4>
+            <p className="deep-orange-text text-darken-4 center-align"> The fields with the "(*)" are required</p>
             <div className="col s12">
               <Typography >{this.getStepContent(activeStep)}</Typography>
             </div>

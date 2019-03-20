@@ -26,19 +26,22 @@ export default class ContactForm extends Component {
         <div className='container'> 
         <Fragment>
             <div className="row">
-                <div className='input-field col s6'>
-                    <input onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
+                <div className='col s6'>
                     <label for="direction">Residence</label>
+                    <input pattern="[A-Za-zÀ-ÿ '-,]*" onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
-                <div className='input-field col s6'>
-                    <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
+                <div className='col s6'>
                     <label for="city">City</label>
+                    <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
              </div>
             <div className='row'>
-                <div className='input-field col s6'>
-                    <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" required placeholder="000000"/>
+                <div className='col s6'>
                     <label for="postal">Postal Code</label>
+                    <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" placeholder="000000"/>
+                    <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='input-field col s6'>
                     <Countries   

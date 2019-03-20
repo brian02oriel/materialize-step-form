@@ -12,7 +12,7 @@ export default class Confirm extends Component {
     }
 
   render() {
-      const { values:{ firstName, lastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence} } = this.props;
+      const { values:{ firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence} } = this.props;
     return (
         <div className='container'>
                 <Fragment>
@@ -21,7 +21,8 @@ export default class Confirm extends Component {
                             <ul className="collection with-header">
                                 <li className="collection header"><h4>Personal info</h4></li>
                                 <li className="collection-item"> {firstName} </li>
-                                <li className="collection-item"> {lastName} </li>
+                                <li className="collection-item"> {PlastName} </li>
+                                <li className="collection-item"> {MlastName} </li>
                                 <li className="collection-item"> {birth} </li>
                                 <li className="collection-item"> {gender} </li>
                                 <li className="collection-item"> {nationality} </li>
