@@ -27,19 +27,19 @@ export default class ContactForm extends Component {
         <Fragment>
             <div className="row">
                 <div className='col s6'>
-                    <label for="direction">Residence</label>
+                    <label htmlFor="direction">Residence</label>
                     <input pattern="[A-Za-zÀ-ÿ '-,]*" onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s6'>
-                    <label for="city">City</label>
+                    <label htmlFor="city">City</label>
                     <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
              </div>
             <div className='row'>
                 <div className='col s6'>
-                    <label for="postal">Postal Code</label>
+                    <label htmlFor="postal">Postal Code</label>
                     <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" placeholder="000000"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
