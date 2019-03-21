@@ -83,9 +83,10 @@ export default class PersonalForm extends Component {
                 </div>
             </div>  
             <div className='row'>
-                <div className='input-field col s6'>
+                <div className=' col s6'>
+                <label htmlFor="birth">Birthday(*)</label>
                     <input onChange = {handleChange('birth')} id="birth" value = {values.birth}  type="date"  required/>
-                    <label htmlFor="birth">Birthday(*)</label>
+                    
                     
                 </div>
                 <div className='input-field col s6' >
