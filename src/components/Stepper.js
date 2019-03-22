@@ -22,6 +22,7 @@ class FormStepper extends Component {
   state = {
     step:0,
    isValidForm1: false,
+   buttonState: 'disabled',
     firstName: '', //first form
     PlastName:'',
     MlastName:'',
@@ -58,6 +59,7 @@ getStepContent(step) {
           values = {values}
           handleBlur = {this.handleBlur}
           isValid = {this.state.isValidForm1}
+          buttonState = {this.state.buttonState}
           />
         )
       case 1:
@@ -129,9 +131,9 @@ FormValidation(fields){
     console.log("Recorriendo campos", field);
       if(field){
         console.log("campo cierto", field);
-        this.setState({isValidForm1: true});
+        this.setState({isValidForm1: true, buttonState: " "});
       } else{
-        this.setState({isValidForm1: false});
+        this.setState({isValidForm1: false, buttonState: "disabled"});
         console.log("campo falso", field);
       }
   }

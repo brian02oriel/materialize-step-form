@@ -10,7 +10,6 @@ export default class PersonalForm extends Component {
         super(props);
         this.state = {
             id_selection:'',
-            buttonState: '',
             valid: false
         }
     }
@@ -96,7 +95,7 @@ formValid(isValid){
     }
 }
   render() {
-      const { values, handleChange, handleBlur, isValid} = this.props;
+      const { values, handleChange, handleBlur, isValid, buttonState} = this.props;
     return (
         
       <div className='container'> 
@@ -112,19 +111,20 @@ formValid(isValid){
             <div className='row'>
                 <div className='col s6 '>
                     <label htmlFor="PLast_name">Paternal Surname(*)</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {handleBlur('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s6'>
                     <label htmlFor="MLast_name">Maternal Surname(*)</label>
-                    <input  pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')}  id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <input  pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')}  onBlur = {handleBlur('PlastName')} id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
-            <div className='row'>
+            <div className='row input-field'>
                 <div className=' col s6'>
                 <label htmlFor="birth">Birthday(*)</label>
                     <input onChange = {handleChange('birth')} id="birth" value = {values.birth}  type="date"  required/>
+                    
                     
                     
                 </div>
@@ -167,7 +167,7 @@ formValid(isValid){
             </div>  
             <div className='row'>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.buttonState }>
+                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + buttonState }>
                         Continue
                     </button>
                 </div>
