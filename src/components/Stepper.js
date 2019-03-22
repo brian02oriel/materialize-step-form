@@ -122,37 +122,32 @@ handleChange = input => e => {
 
 validFields1 = {
   firstName: false,
-  PlastName: false
+  PlastName: false,
+  MlastName: false,
 }
 
-FormValidation(fields){ 
-  console.log("Validacion form1");
+FormValidation(form, fields){ 
+  console.log("Validacion form1", form);
   //console.log(this.validFields1);
   console.log("Campos ",fields);
-
-  Object.keys(fields).forEach(field =>{
-    console.log("Recorriendo campos", field, fields[field]);
-
-    if(fields[field]){
-      console.log("campo cierto", field);
-      this.setState({isValidForm1: true, buttonState: " "});
-    } else{
-      console.log("campo falso", field);
-      this.setState({isValidForm1: false, buttonState: "disabled"});
-    }
-  })
+  switch(form){
+    case 1:
+    Object.keys(fields).forEach(field =>{
+      console.log("Recorriendo campos", field, fields[field]);
   
-  /*for(const field in fields){
-    console.log("Recorriendo campos", field);
-      if(field){
+      if(fields[field]){
         console.log("campo cierto", field);
         this.setState({isValidForm1: true, buttonState: " "});
       } else{
-        this.setState({isValidForm1: false, buttonState: "disabled"});
         console.log("campo falso", field);
+        this.setState({isValidForm1: false, buttonState: "disabled"});
       }
-  }*/
-  
+    })
+    break
+  }
+
+ 
+    
 }
 
 handleBlur = input => e => {
@@ -165,7 +160,7 @@ handleBlur = input => e => {
         className.split(" ").forEach( element => {
             if(element === "valid"){
               this.validFields1.firstName = true;
-              this.FormValidation(this.validFields1);
+              this.FormValidation(1,this.validFields1);
             }
         })      
     break
@@ -175,10 +170,20 @@ handleBlur = input => e => {
          className.split(" ").forEach( element => {
           if(element === "valid"){
             this.validFields1.PlastName = true;
-            this.FormValidation(this.validFields1);
+            this.FormValidation(1,this.validFields1);
           }
       })
     break
+
+    case "MlastName":
+    console.log("Maternal Surname", className.split(" "));
+    className.split(" ").forEach( element => {
+     if(element === "valid"){
+       this.validFields1.MlastName = true;
+       this.FormValidation(1, this.validFields1);
+     }
+ })
+break
     
     
   }
