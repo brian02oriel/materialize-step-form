@@ -21,7 +21,7 @@ class FormStepper extends Component {
   
   state = {
     step:0,
-   
+   isValidForm1: false,
     firstName: '', //first form
     PlastName:'',
     MlastName:'',
@@ -41,6 +41,7 @@ class FormStepper extends Component {
     pid_back:'',
     presidence: ''
 
+   
     
 }
 
@@ -55,6 +56,8 @@ getStepContent(step) {
           nextStep = {this.nextStep}
           handleChange = {this.handleChange}
           values = {values}
+          handleBlur = {this.handleBlur}
+          isValid = {this.state.isValidForm1}
           />
         )
       case 1:
@@ -111,7 +114,45 @@ this.setState({
 
 //Handle fields change
 handleChange = input => e => {
-  this.setState({[input]: e.target.value});
+  const { value, className, name} = e.target;
+  this.setState({[input]: value});
+}
+
+validFields1 = {
+  firstName: false
+}
+
+FormValidation(fields){ 
+  console.log("Validacion form1");
+  console.log(this.validFields1);
+  for(const field in fields){
+    console.log("Recorriendo campos", field);
+      if(field){
+        console.log("campo cierto", field);
+        this.setState({isValidForm1: true});
+      } else{
+        this.setState({isValidForm1: false});
+        console.log("campo falso", field);
+      }
+  }
+  
+}
+
+handleBlur = input => e => {
+  const { value, className, name} = e.target;
+  //console.log({[input]: className});
+  switch(name){
+    case "firstName":
+        //console.log(className.split(" "));
+        className.split(" ").forEach( element => {
+            if(element === "valid"){
+              this.validFields1.firstName = true;
+              this.FormValidation(this.validFields1);
+            }
+        })
+        
+    break
+  }
 }
 
 

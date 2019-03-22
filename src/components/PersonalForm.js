@@ -6,17 +6,46 @@ import M from "materialize-css";
 
 
 export default class PersonalForm extends Component {
-    state = {
-        id_selection:'',
-        buttonState: '',
-        validation: 0
+    constructor(props){
+        super(props);
+        this.state = {
+            id_selection:'',
+            buttonState: '',
+            valid: false
+        }
+    }
+
+    componentWillMount(){
+        console.log("Component Will Mount ")    ;
     }
 
     componentDidMount(){
+        console.log("Component Did Mount ")    ;
         M.AutoInit();
-
     }
 
+     
+
+    componentWillReceiveProps(nextProps){
+        console.log("Component Will Receive Props", nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("Should Component update", nextProps, nextState);
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log("Component Will Update", nextProps, nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState){
+       console.log("Component Did Update", prevProps, prevState);
+    }
+
+    componentWillUnmount(){
+        console.log("Component Will Unmount");
+    }
   
 
     continue = e =>{ //e = event
@@ -32,6 +61,7 @@ export default class PersonalForm extends Component {
         e.preventDefault();
         //this.props.handleChange('id');
         //console.log(this.props.values.id)
+        console.log(e.target.className);
         this.setState({id_selection: e.target.value});
     }
 
@@ -57,16 +87,25 @@ export default class PersonalForm extends Component {
             )
         }
     }
-
+formValid(isValid){
+    console.log(isValid);
+    if(isValid){
+        return(<h4> Valido </h4>)
+    } else {
+        return(<h4> Invalido </h4>)
+    }
+}
   render() {
-      const { values, handleChange } = this.props;
+      const { values, handleChange, handleBlur, isValid} = this.props;
     return (
+        
       <div className='container'> 
+      <div>{this.formValid(isValid)}</div>
         <Fragment>
             <div className='row'>
                 <div className='col s12 '>
                     <label htmlFor="first_name">First Name(*)</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')}  id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
+                    <input name="firstName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')} onBlur = {handleBlur('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
