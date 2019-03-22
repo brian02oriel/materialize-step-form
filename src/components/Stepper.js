@@ -121,13 +121,28 @@ handleChange = input => e => {
 }
 
 validFields1 = {
-  firstName: false
+  firstName: false,
+  PlastName: false
 }
 
 FormValidation(fields){ 
   console.log("Validacion form1");
-  console.log(this.validFields1);
-  for(const field in fields){
+  //console.log(this.validFields1);
+  console.log("Campos ",fields);
+
+  Object.keys(fields).forEach(field =>{
+    console.log("Recorriendo campos", field, fields[field]);
+
+    if(fields[field]){
+      console.log("campo cierto", field);
+      this.setState({isValidForm1: true, buttonState: " "});
+    } else{
+      console.log("campo falso", field);
+      this.setState({isValidForm1: false, buttonState: "disabled"});
+    }
+  })
+  
+  /*for(const field in fields){
     console.log("Recorriendo campos", field);
       if(field){
         console.log("campo cierto", field);
@@ -136,24 +151,36 @@ FormValidation(fields){
         this.setState({isValidForm1: false, buttonState: "disabled"});
         console.log("campo falso", field);
       }
-  }
+  }*/
   
 }
 
 handleBlur = input => e => {
   const { value, className, name} = e.target;
-  //console.log({[input]: className});
+  console.log({[input]: className});
+
   switch(name){
     case "firstName":
-        //console.log(className.split(" "));
+        console.log(className.split(" "));
         className.split(" ").forEach( element => {
             if(element === "valid"){
               this.validFields1.firstName = true;
               this.FormValidation(this.validFields1);
             }
-        })
-        
+        })      
     break
+
+    case "PlastName":
+         console.log("Paternal Surname", className.split(" "));
+         className.split(" ").forEach( element => {
+          if(element === "valid"){
+            this.validFields1.PlastName = true;
+            this.FormValidation(this.validFields1);
+          }
+      })
+    break
+    
+    
   }
 }
 

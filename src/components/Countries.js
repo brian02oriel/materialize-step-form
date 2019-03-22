@@ -4,7 +4,7 @@ export default class Countries extends Component {
     render(){
         const { values, handleChange, type } = this.props;
         return(
-            <select onChange = {handleChange(type)}  value = {values} required>
+            <select name = {type} onChange = {handleChange(type)}  value = {values} required>
         <option value="" disabled selected>Choose your option</option>
         <option value="4">Afghanistan</option>
         <option value="248">Åland Islands</option>

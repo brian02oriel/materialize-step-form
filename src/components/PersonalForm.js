@@ -25,7 +25,7 @@ export default class PersonalForm extends Component {
 
      
 
-    componentWillReceiveProps(nextProps){
+   /* componentWillReceiveProps(nextProps){
         console.log("Component Will Receive Props", nextProps);
     }
 
@@ -44,7 +44,7 @@ export default class PersonalForm extends Component {
 
     componentWillUnmount(){
         console.log("Component Will Unmount");
-    }
+    }*/
   
 
     continue = e =>{ //e = event
@@ -68,7 +68,7 @@ export default class PersonalForm extends Component {
         
         var selection = this.state.id_selection;
        
-       console.log(selection);
+       //console.log(selection);
         if(selection === 'dni') {
             return(
                 <div className='col s6'>
@@ -87,7 +87,7 @@ export default class PersonalForm extends Component {
         }
     }
 formValid(isValid){
-    console.log(isValid);
+    //console.log(isValid);
     if(isValid){
         return(<h4> Valido </h4>)
     } else {
@@ -111,7 +111,7 @@ formValid(isValid){
             <div className='row'>
                 <div className='col s6 '>
                     <label htmlFor="PLast_name">Paternal Surname(*)</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {handleBlur('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
+                    <input name="PlastName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {handleBlur('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s6'>
@@ -129,7 +129,7 @@ formValid(isValid){
                     
                 </div>
                 <div className='input-field col s6' >
-                    <select onChange = {handleChange('gender')}  value = {values.gender} required>
+                    <select name="gender" onChange = {handleChange('gender')}  value = {values.gender} required>
                         <option value="" disabled>Choose your option</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -147,7 +147,7 @@ formValid(isValid){
                 </div>
 
                 <div className='input-field col s6'>
-                     <select onChange = {handleChange('id')} onChangeCapture= {this.handleSelect} value = {values.id} required >
+                     <select name="id_type" onChange = {handleChange('id')} onChangeCapture= {this.handleSelect} value = {values.id} required >
                         <option value="" disabled>Choose your option</option>
                         <option value="dni">DNI</option>
                         <option value="passport">Passport</option>
