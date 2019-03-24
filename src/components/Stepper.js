@@ -22,7 +22,7 @@ class FormStepper extends Component {
   state = {
     step:0,
    isValidForm1: false,
-   buttonState: 'disabled',
+   isValidForm2: false,
     firstName: '', //first form
     PlastName:'',
     MlastName:'',
@@ -46,6 +46,8 @@ class FormStepper extends Component {
     
 }
 
+
+// Get the steps contents
 getStepContent(step) {
   const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, pid_front, pid_back, presidence} = this.state;
   const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence};
@@ -59,16 +61,18 @@ getStepContent(step) {
           values = {values}
           handleBlur = {this.handleBlur}
           isValid = {this.state.isValidForm1}
-          buttonState = {this.state.buttonState}
           />
         )
       case 1:
+      this.state.buttonState = 'disabled';
         return(
           <ContactForm
           nextStep = {this.nextStep}
           prevStep = {this.prevStep}
           handleChange = {this.handleChange}
           values = {values}
+          handleBlur = {this.handleBlur}
+          isValid = {this.state.isValidForm2}
           />
         )
       case 2:
@@ -159,6 +163,17 @@ handleChange = input => e => {
       this.FormValidation(1, this.validFields1);
     }
     break
+
+    case "country":
+    if(value){
+      this.validFields2.country = true;
+      this.FormValidation(2, this.validFields2);
+    } else{
+      this.validFields2.country = false;
+      this.FormValidation(2, this.validFields2);
+    }
+    break
+
   }
 }
 
@@ -174,21 +189,43 @@ validFields1 = {
   id_numer: false
 }
 
+validFields2 = {
+  direction: false, 
+  city: false,
+  country: false,
+}
+
 FormValidation(form, fields){ 
-  console.log("Validacion form1", form);
+  console.log("Validacion form", form);
   //console.log(this.validFields1);
   console.log("Campos ",fields);
   switch(form){
+    //Casos de validación formulario 1
     case 1:
     Object.keys(fields).forEach(field =>{
       console.log("Recorriendo campos", field, fields[field]);
   
       if(fields[field]){
         console.log("campo cierto", field);
-        this.setState({isValidForm1: true, buttonState: " "});
+        this.setState({isValidForm1: true});
       } else{
         console.log("campo falso", field);
-        this.setState({isValidForm1: false, buttonState: "disabled"});
+        this.setState({isValidForm1: false});
+      }
+    })
+    break
+
+    //Casos de validación formulario 2
+    case 2:
+    Object.keys(fields).forEach(field =>{
+      console.log("Recorriendo campos", field, fields[field]);
+  
+      if(fields[field]){
+        console.log("campo cierto", field);
+        this.setState({isValidForm2: true});
+      } else{
+        console.log("campo falso", field);
+        this.setState({isValidForm2: false});
       }
     })
     break
@@ -198,6 +235,7 @@ FormValidation(form, fields){
     
 }
 
+//handle blur of different form giving the value, className and name
 handleBlur = input => e => {
   const { value, className, name} = e.target;
   console.log({[input]: className});
@@ -264,6 +302,32 @@ handleBlur = input => e => {
         } else{
           this.validFields1.id_number = false;
           this.FormValidation(1, this.validFields1);
+        }
+      })
+    break
+    
+    case "direction":
+    console.log("direction", value);
+    className.split(" ").forEach( element => {
+     if(element === "valid"){
+       this.validFields2.direction = true;
+       this.FormValidation(2, this.validFields2);
+        } else{
+          this.validFields2.direction = false;
+          this.FormValidation(2, this.validFields2);
+        }
+      })
+    break
+
+    case "city":
+    console.log("city", value);
+    className.split(" ").forEach( element => {
+     if(element === "valid"){
+       this.validFields2.city = true;
+       this.FormValidation(2, this.validFields2);
+        } else{
+          this.validFields2.city = false;
+          this.FormValidation(2, this.validFields2);
         }
       })
     break

@@ -10,6 +10,7 @@ export default class PersonalForm extends Component {
         super(props);
         this.state = {
             id_selection:'',
+            enableButton:'disabled',
             valid: false
         }
     }
@@ -89,13 +90,15 @@ export default class PersonalForm extends Component {
 formValid(isValid){
     //console.log(isValid);
     if(isValid){
+        this.state.enableButton = ' ';
         return(<h4> Valido </h4>)
     } else {
+        this.state.enableButton = 'disabled';
         return(<h4> Invalido </h4>)
     }
 }
   render() {
-      const { values, handleChange, handleBlur, isValid, buttonState} = this.props;
+      const { values, handleChange, handleBlur, isValid} = this.props;
     return (
         
       <div className='container'> 
@@ -167,7 +170,7 @@ formValid(isValid){
             </div>  
             <div className='row'>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + buttonState }>
+                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.enableButton }>
                         Continue
                     </button>
                 </div>

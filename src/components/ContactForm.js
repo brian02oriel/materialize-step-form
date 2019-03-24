@@ -3,6 +3,13 @@ import Countries from './Countries';
 import M from "materialize-css";
 
 export default class ContactForm extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            enableButton:'disabled',
+            valid: false
+        }
+    }
     componentDidMount(){
     
         M.AutoInit();
@@ -20,20 +27,40 @@ export default class ContactForm extends Component {
         this.props.prevStep();
     }
 
+    /*controlButtonState(){
+        if(this.state.buttonState === 'disabled' || this.props.buttonState === 'disabled'){
+            this.setState({buttonState: 'disabled'});
+        } else {
+
+        }
+    }*/
+
+    formValid(isValid){
+        //console.log(isValid);
+        if(isValid){
+            this.state.enableButton = ' ';
+            return(<h4> Valido </h4>)
+        } else {
+            this.state.enableButton = 'disabled';
+            return(<h4> Invalido </h4>)
+        }
+    }
+
   render() {
-    const { values, handleChange } = this.props;
+    const { values, handleChange, handleBlur, isValid} = this.props;
     return (
         <div className='container'> 
+        <div>{this.formValid(isValid)}</div>
         <Fragment>
             <div className="row">
                 <div className='col s6'>
-                    <label htmlFor="direction">Residence</label>
-                    <input pattern="[A-Za-zÀ-ÿ '-,]*" onChange = {handleChange('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
+                    <label htmlFor="direction">Residence(*)</label>
+                    <input name = "direction" pattern="[A-Za-zÀ-ÿ '-,]*" onChange = {handleChange('direction')} onBlur= {handleBlur('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s6'>
-                    <label htmlFor="city">City</label>
-                    <input onChange = {handleChange('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
+                    <label htmlFor="city">City(*)</label>
+                    <input name = "city" onChange = {handleChange('city')} onBlur= {handleBlur('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
              </div>
@@ -48,7 +75,7 @@ export default class ContactForm extends Component {
                         handleChange = {this.props.handleChange}
                         values = {this.props.values.country}
                         type = 'country'/>
-                    <label>Country</label>
+                    <label>Country (*)</label>
                 </div>
             </div> 
             <div className='row'>
@@ -59,7 +86,7 @@ export default class ContactForm extends Component {
                     </button>
                 </div>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className="waves-effect waves-light btn deep-purple darken-3">
+                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.enableButton }>
                         Continue
                     </button>
                 </div>
