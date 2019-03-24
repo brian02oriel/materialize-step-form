@@ -116,14 +116,62 @@ this.setState({
 
 //Handle fields change
 handleChange = input => e => {
-  const { value, className, name} = e.target;
+  const { value, name} = e.target;
   this.setState({[input]: value});
+  console.log(name);
+  switch(name){
+    case "gender":
+    if(value){
+      this.validFields1.gender = true;
+      this.FormValidation(1, this.validFields1);
+    } else{
+      this.validFields1.gender = false;
+      this.FormValidation(1, this.validFields1);
+    }
+    break
+
+    case "nationality":
+    if(value){
+      this.validFields1.nationality = true;
+      this.FormValidation(1, this.validFields1);
+    } else{
+      this.validFields1.nationality = false;
+      this.FormValidation(1, this.validFields1);
+    }
+    break
+
+    case "id_type":
+    if(value){
+      this.validFields1.id_type = true;
+      this.FormValidation(1, this.validFields1);
+    } else{
+      this.validFields1.id_type = false;
+      this.FormValidation(1, this.validFields1);
+    }
+    break
+
+    case "em_country":
+    if(value){
+      this.validFields1.em_country = true;
+      this.FormValidation(1, this.validFields1);
+    } else{
+      this.validFields1.em_country = false;
+      this.FormValidation(1, this.validFields1);
+    }
+    break
+  }
 }
 
 validFields1 = {
   firstName: false,
   PlastName: false,
   MlastName: false,
+  birth: false,
+  gender: false,
+  nationality: false,
+  id_type: false,
+  em_country: false,
+  id_numer: false
 }
 
 FormValidation(form, fields){ 
@@ -153,7 +201,7 @@ FormValidation(form, fields){
 handleBlur = input => e => {
   const { value, className, name} = e.target;
   console.log({[input]: className});
-
+  console.log(value);
   switch(name){
     case "firstName":
         console.log(className.split(" "));
@@ -161,6 +209,9 @@ handleBlur = input => e => {
             if(element === "valid"){
               this.validFields1.firstName = true;
               this.FormValidation(1,this.validFields1);
+            } else{
+              this.validFields1.firstName = false;
+              this.FormValidation(1, this.validFields1);
             }
         })      
     break
@@ -171,6 +222,9 @@ handleBlur = input => e => {
           if(element === "valid"){
             this.validFields1.PlastName = true;
             this.FormValidation(1,this.validFields1);
+          } else{
+            this.validFields1.PlastName = false;
+            this.FormValidation(1, this.validFields1);
           }
       })
     break
@@ -181,11 +235,38 @@ handleBlur = input => e => {
      if(element === "valid"){
        this.validFields1.MlastName = true;
        this.FormValidation(1, this.validFields1);
-     }
- })
-break
+        } else{
+          this.validFields1.MlastName = false;
+          this.FormValidation(1, this.validFields1);
+        }
+      })
+    break
     
+    case "birth":
+    console.log("Birth", className.split(" "));
+    className.split(" ").forEach( element => {
+     if(element === "valid"){
+       this.validFields1.birth = true;
+       this.FormValidation(1, this.validFields1);
+        } else{
+          this.validFields1.birth = false;
+          this.FormValidation(1, this.validFields1);
+        }
+      })
+    break
     
+    case "id_number":
+    console.log("id_number", value);
+    className.split(" ").forEach( element => {
+     if(element === "valid"){
+       this.validFields1.id_number = true;
+       this.FormValidation(1, this.validFields1);
+        } else{
+          this.validFields1.id_number = false;
+          this.FormValidation(1, this.validFields1);
+        }
+      })
+    break
   }
 }
 

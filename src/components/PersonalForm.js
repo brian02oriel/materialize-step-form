@@ -64,7 +64,7 @@ export default class PersonalForm extends Component {
         this.setState({id_selection: e.target.value});
     }
 
-    handleIdentity(handleChange, values){
+    handleIdentity(handleChange, values, handleBlur){
         
         var selection = this.state.id_selection;
        
@@ -73,14 +73,14 @@ export default class PersonalForm extends Component {
             return(
                 <div className='col s6'>
                     <label htmlFor="id_number">DNI(*)</label>
-                    <input pattern="[0-9A-Z-]*" onChange = {handleChange('id_number')} id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
+                    <input name = "id_number" pattern="[0-9A-Z-]*" onChange = {handleChange('id_number')} onBlur = {handleBlur('id_number')} id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                 </div>
             )
         } else if(selection === 'passport'){
             return(
                 <div className='col s6'>
                      <label htmlFor="id_number">Passport(*)</label>
-                     <input pattern="[0-9A-Z-]*" onChange = {handleChange('id_number')}  id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
+                     <input name = "id_number" pattern="[0-9A-Z-]*" onChange = {handleChange('id_number')}  onBlur = {handleBlur('id_number')} id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                 </div>
 
             )
@@ -123,14 +123,14 @@ formValid(isValid){
             <div className='row input-field'>
                 <div className=' col s6'>
                 <label htmlFor="birth">Birthday(*)</label>
-                    <input name="birth" onChange = {handleChange('birth')} id="birth" value = {values.birth}  type="date"  required/>
+                    <input name="birth" onChange = {handleChange('birth')} onBlur = {handleBlur('birth')} id="birth" value = {values.birth}  type="date"  className="validate" required/>
                     
                     
                     
                 </div>
                 <div className='input-field col s6' >
                     <select name="gender" onChange = {handleChange('gender')}  value = {values.gender} required>
-                        <option value="" disabled>Choose your option</option>
+                        <option value="" disabled selected>Choose your option</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -163,7 +163,7 @@ formValid(isValid){
                         type = 'em_country'/>
                     <label>Emission Country(*)</label>
                 </div>
-                { this.handleIdentity(this.props.handleChange, this.props.values) }       
+                { this.handleIdentity(this.props.handleChange, this.props.values, this.props.handleBlur) }       
             </div>  
             <div className='row'>
                 <div className='col s6'> 
