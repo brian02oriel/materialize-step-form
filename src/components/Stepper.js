@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+//import Typography from '@material-ui/core/Typography';
+//import Grid from '@material-ui/core/Grid';
 
 import PersonalForm from './PersonalForm';
 import ContactForm from './ContactForm';
@@ -55,6 +55,7 @@ getStepContent(step) {
   //console.log(step);  
   switch (step) {
       case 0: 
+        console.log("Personal form", step);
         return(
           <PersonalForm 
           nextStep = {this.nextStep}
@@ -65,7 +66,7 @@ getStepContent(step) {
           />
         )
       case 1:
-     
+      console.log("Contact form", step);
         return(
           <ContactForm
           nextStep = {this.nextStep}
@@ -77,6 +78,7 @@ getStepContent(step) {
           />
         )
       case 2:
+      console.log("Required Docs form", step);
         return(
           <FormRequiredDocs
           nextStep = {this.nextStep}
@@ -88,6 +90,7 @@ getStepContent(step) {
           />
         )
       case 3:
+      console.log("Confirm", step);
       return(
         < Confirm
         nextStep = {this.nextStep}
@@ -111,6 +114,7 @@ nextStep = () => {
   this.setState({
       step: step + 1
   });
+  console.log("step", step);
 }
 
 //Go back previous step
@@ -119,6 +123,8 @@ const {step} = this.state;
 this.setState({
     step: step - 1
 });
+
+console.log("step", step);
 }
 
 //Handle fields change
@@ -416,8 +422,8 @@ handleBlur = input => e => {
     const activeStep = this.state.step;
     
     return (
-      <Grid style = { containerStyle}>
-        <Stepper activeStep={activeStep} style={ stepperStyle }>
+        <div className="contents"> 
+        <Stepper activeStep={activeStep} style={ stepperStyle } className="hide-on-small-only">
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
@@ -434,10 +440,10 @@ handleBlur = input => e => {
         <h4 className="center-align"><span className = "deep-purple-text text-darken-3 center-align"> Your account may take up to 4 business days to be approved</span></h4>
             <p className="deep-orange-text text-darken-4 center-align"> The fields with the "(*)" are required</p>
             <div className="col s12">
-              <Typography >{this.getStepContent(activeStep)}</Typography>
+               {this.getStepContent(activeStep)}
             </div>
         </div>
-      </Grid>
+        </div>
     );
   }
 }

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import FormStepper from './components/Stepper';
-import Grid from '@material-ui/core/Grid';
+//import Grid from '@material-ui/core/Grid';
 
 
 class App extends Component {
   render() {
     return (
         <div className="container grey lighten-4">
-            <Grid
-            alignContent = 'center'
-            alignItems = 'center'
-            justify = 'center' >
+            <div className="row" >
               <FormStepper />
 
-          </Grid>
+          </div>
         </div>
       
     );

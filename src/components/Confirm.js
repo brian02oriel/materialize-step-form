@@ -9,6 +9,8 @@ export default class Confirm extends Component {
     back = e => {
         e.preventDefault();
         this.props.prevStep();
+        console.log("event", e);
+        console.log("prevStep", this.props.prevStep());
     }
 
   render() {

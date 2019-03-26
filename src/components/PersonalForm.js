@@ -113,19 +113,19 @@ formValid(isValid){
                 <div className='col s12 '>
                     <label htmlFor="first_name">First Name(*)</label>
                     <input name="firstName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('firstName')} onBlur = {handleBlur('firstName')} id="first_name" value = {values.firstName} type="text" className="validate" required placeholder="John"/>
-                    <span class="helper-text" data-error="Intoduce valid characters"></span>
+                    <span className="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row'>
                 <div className='col s12 m6'>
                     <label htmlFor="PLast_name">Paternal Surname(*)</label>
                     <input name="PlastName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {handleBlur('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
-                    <span class="helper-text" data-error="Intoduce valid characters"></span>
+                    <span className="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
                 <div className='col s12 m6'>
                     <label htmlFor="MLast_name">Maternal Surname(*)</label>
                     <input  name="MlastName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')}  onBlur = {handleBlur('PlastName')} id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
-                    <span class="helper-text" data-error="Intoduce valid characters"></span>
+                    <span className="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row input-field'>
@@ -137,8 +137,8 @@ formValid(isValid){
                     
                 </div>
                 <div className='input-field col s12 m6' >
-                    <select name="gender" onChange = {handleChange('gender')}  value = {values.gender} required>
-                        <option value="" disabled selected>Choose your option</option>
+                    <select name="gender" onChange = {handleChange('gender')} value = {values.gender} required>
+                        <option value="" disabled>Choose your option</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
