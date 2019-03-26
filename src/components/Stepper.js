@@ -23,6 +23,7 @@ class FormStepper extends Component {
     step:0,
    isValidForm1: false,
    isValidForm2: false,
+   isValidForm3: false,
     firstName: '', //first form
     PlastName:'',
     MlastName:'',
@@ -36,8 +37,6 @@ class FormStepper extends Component {
     city:'',
     postal: '',
     country:'',
-    cell:'',
-    email: '',
     pid_front: '', //third form
     pid_back:'',
     presidence: ''
@@ -49,8 +48,8 @@ class FormStepper extends Component {
 
 // Get the steps contents
 getStepContent(step) {
-  const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell,  email, pid_front, pid_back, presidence} = this.state;
-  const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, cell, email, pid_front, pid_back, presidence};
+  const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, presidence} = this.state;
+  const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, presidence};
   //console.log(step);  
   switch (step) {
       case 0: 
@@ -64,7 +63,7 @@ getStepContent(step) {
           />
         )
       case 1:
-      this.state.buttonState = 'disabled';
+     
         return(
           <ContactForm
           nextStep = {this.nextStep}
@@ -82,6 +81,8 @@ getStepContent(step) {
           prevStep = {this.prevStep}
           handleChange = {this.handleChange}
           values = {values}
+          handleBlur = {this.handleBlur}
+          isValid = {this.state.isValidForm3}
           />
         )
       case 3:
@@ -122,7 +123,9 @@ this.setState({
 handleChange = input => e => {
   const { value, name} = e.target;
   this.setState({[input]: value});
-  console.log(name);
+  //console.log(name);
+
+  //Handle Select validations
   switch(name){
     case "gender":
     if(value){
@@ -174,6 +177,44 @@ handleChange = input => e => {
     }
     break
 
+    case "pid_front":
+    console.log("pid_front", value);
+    if(value){
+      this.validFields3.pid_front = true;
+      this.FormValidation(3, this.validFields3);
+    } else{
+      this.validFields2.pid_front = false;
+      this.FormValidation(3, this.validFields3);
+    }
+    break
+
+    case "pid_back":
+    console.log("pid_back", value);
+     if(value){
+       this.validFields3.pid_back = true;
+       this.FormValidation(3, this.validFields3);
+        } else{
+          this.validFields3.pid_back = false;
+          this.FormValidation(3, this.validFields3);
+        }
+    break
+
+    case "presidence":
+    console.log("presidence", value);
+     if(value){
+       this.validFields3.presidence = true;
+       this.FormValidation(3, this.validFields3);
+        } else{
+          this.validFields3.presidence = false;
+          this.FormValidation(3, this.validFields3);
+        }
+
+    break
+
+    default:
+    
+    break
+
   }
 }
 
@@ -195,21 +236,28 @@ validFields2 = {
   country: false,
 }
 
+validFields3 = {
+  pid_front: false, 
+  pid_back: false,
+  presidence: false,
+}
+
+//Validate all the 3 forms
 FormValidation(form, fields){ 
-  console.log("Validacion form", form);
+  //console.log("Validacion form", form);
   //console.log(this.validFields1);
-  console.log("Campos ",fields);
+  //console.log("Campos ",fields);
   switch(form){
     //Casos de validación formulario 1
     case 1:
     Object.keys(fields).forEach(field =>{
-      console.log("Recorriendo campos", field, fields[field]);
+      //console.log("Recorriendo campos", field, fields[field]);
   
       if(fields[field]){
-        console.log("campo cierto", field);
+        //console.log("campo cierto", field);
         this.setState({isValidForm1: true});
       } else{
-        console.log("campo falso", field);
+        //console.log("campo falso", field);
         this.setState({isValidForm1: false});
       }
     })
@@ -218,17 +266,36 @@ FormValidation(form, fields){
     //Casos de validación formulario 2
     case 2:
     Object.keys(fields).forEach(field =>{
-      console.log("Recorriendo campos", field, fields[field]);
+      //console.log("Recorriendo campos", field, fields[field]);
   
       if(fields[field]){
-        console.log("campo cierto", field);
+        //console.log("campo cierto", field);
         this.setState({isValidForm2: true});
       } else{
-        console.log("campo falso", field);
+        //console.log("campo falso", field);
         this.setState({isValidForm2: false});
       }
     })
     break
+
+    case 3:
+    Object.keys(fields).forEach(field =>{
+      //console.log("Recorriendo campos", field, fields[field]);
+  
+      if(fields[field]){
+        //console.log("campo cierto", field);
+        this.setState({isValidForm3: true});
+      } else{
+        //console.log("campo falso", field);
+        this.setState({isValidForm3: false});
+      }
+    })
+    break
+
+    default:
+    
+    break
+
   }
 
  
@@ -236,6 +303,7 @@ FormValidation(form, fields){
 }
 
 //handle blur of different form giving the value, className and name
+//for pre-validate
 handleBlur = input => e => {
   const { value, className, name} = e.target;
   console.log({[input]: className});
@@ -331,6 +399,11 @@ handleBlur = input => e => {
         }
       })
     break
+
+    default:
+    
+    break
+
   }
 }
 

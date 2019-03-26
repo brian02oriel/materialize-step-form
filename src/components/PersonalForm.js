@@ -11,7 +11,7 @@ export default class PersonalForm extends Component {
         this.state = {
             id_selection:'',
             enableButton:'disabled',
-            valid: false
+
         }
     }
 
@@ -87,13 +87,17 @@ export default class PersonalForm extends Component {
             )
         }
     }
-formValid(isValid){
+formValid(isValid){ 
     //console.log(isValid);
     if(isValid){
-        this.state.enableButton = ' ';
+        if(this.state.enableButton !== ''){
+            this.setState({enableButton: ''});
+        }
         return(<h4> Valido </h4>)
     } else {
-        this.state.enableButton = 'disabled';
+        if(this.state.enableButton !== 'disabled'){
+            this.setState({enableButton: 'disabled'});
+        }
         return(<h4> Invalido </h4>)
     }
 }
@@ -112,26 +116,26 @@ formValid(isValid){
                 </div>
             </div>  
             <div className='row'>
-                <div className='col s6 '>
+                <div className='col s12 m6'>
                     <label htmlFor="PLast_name">Paternal Surname(*)</label>
                     <input name="PlastName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('PlastName')} onBlur = {handleBlur('PlastName')} id="PLast_name" value = {values.PlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
-                <div className='col s6'>
+                <div className='col s12 m6'>
                     <label htmlFor="MLast_name">Maternal Surname(*)</label>
                     <input  name="MlastName" pattern="[A-Za-zÀ-ÿ '-]*" onChange = {handleChange('MlastName')}  onBlur = {handleBlur('PlastName')} id="MLast_name" value = {values.MlastName} type="text" className="validate" required placeholder="Doe"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
             </div>  
             <div className='row input-field'>
-                <div className=' col s6'>
+                <div className=' col s12 m6'>
                 <label htmlFor="birth">Birthday(*)</label>
                     <input name="birth" onChange = {handleChange('birth')} onBlur = {handleBlur('birth')} id="birth" value = {values.birth}  type="date"  className="validate" required/>
                     
                     
                     
                 </div>
-                <div className='input-field col s6' >
+                <div className='input-field col s12 m6' >
                     <select name="gender" onChange = {handleChange('gender')}  value = {values.gender} required>
                         <option value="" disabled selected>Choose your option</option>
                         <option value="Male">Male</option>
@@ -141,7 +145,7 @@ formValid(isValid){
                 </div>
             </div>  
             <div className='row'>
-                <div className='input-field col s6'>
+                <div className='input-field col s12 m6'>
                     <Countries   
                         handleChange = {this.props.handleChange}
                         values = {this.props.values.nationality}
@@ -149,7 +153,7 @@ formValid(isValid){
                     <label>Nationality(*)</label>
                 </div>
 
-                <div className='input-field col s6'>
+                <div className='input-field col s12 m6'>
                      <select name="id_type" onChange = {handleChange('id')} onChangeCapture= {this.handleSelect} value = {values.id} required >
                         <option value="" disabled>Choose your option</option>
                         <option value="dni">DNI</option>
@@ -159,7 +163,7 @@ formValid(isValid){
                 </div>
             </div>  
             <div className='row'>
-                 <div className='input-field col s6'>
+                 <div className='input-field col s12 m6'>
                     <Countries   
                         handleChange = {this.props.handleChange}
                         values = {this.props.values.em_country}
@@ -169,7 +173,7 @@ formValid(isValid){
                 { this.handleIdentity(this.props.handleChange, this.props.values, this.props.handleBlur) }       
             </div>  
             <div className='row'>
-                <div className='col s6'> 
+                <div className='col s12 m6'> 
                     <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.enableButton }>
                         Continue
                     </button>

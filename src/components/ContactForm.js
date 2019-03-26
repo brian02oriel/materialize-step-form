@@ -7,7 +7,7 @@ export default class ContactForm extends Component {
         super(props);
         this.state = {
             enableButton:'disabled',
-            valid: false
+         
         }
     }
     componentDidMount(){
@@ -35,13 +35,17 @@ export default class ContactForm extends Component {
         }
     }*/
 
-    formValid(isValid){
+    formValid(isValid){ 
         //console.log(isValid);
         if(isValid){
-            this.state.enableButton = ' ';
+            if(this.state.enableButton !== ''){
+                this.setState({enableButton: ''});
+            }
             return(<h4> Valido </h4>)
         } else {
-            this.state.enableButton = 'disabled';
+            if(this.state.enableButton !== 'disabled'){
+                this.setState({enableButton: 'disabled'});
+            }
             return(<h4> Invalido </h4>)
         }
     }
@@ -53,24 +57,24 @@ export default class ContactForm extends Component {
         <div>{this.formValid(isValid)}</div>
         <Fragment>
             <div className="row">
-                <div className='col s6'>
+                <div className='col s12 m6'>
                     <label htmlFor="direction">Residence(*)</label>
                     <input name = "direction" pattern="[A-Za-zÀ-ÿ '-,]*" onChange = {handleChange('direction')} onBlur= {handleBlur('direction')} id="direction" value = {values.direction} type="text" className="validate" required placeholder="Home Sweet Home"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
-                <div className='col s6'>
+                <div className='col s12 m6'>
                     <label htmlFor="city">City(*)</label>
                     <input name = "city" onChange = {handleChange('city')} onBlur= {handleBlur('city')} id="city" value = {values.city} type="text" className="validate" required placeholder="TET City"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
              </div>
             <div className='row'>
-                <div className='col s6'>
+                <div className='col s12 m6'>
                     <label htmlFor="postal">Postal Code</label>
                     <input onChange = {handleChange('postal')}  id="postal" value = {values.postal} type="number" className="validate" placeholder="000000"/>
                     <span class="helper-text" data-error="Intoduce valid characters"></span>
                 </div>
-                <div className='input-field col s6'>
+                <div className='input-field col s12 m6'>
                     <Countries   
                         handleChange = {this.props.handleChange}
                         values = {this.props.values.country}
@@ -80,12 +84,12 @@ export default class ContactForm extends Component {
             </div> 
             <div className='row'>
                 
-                <div className='col s6'> 
+                <div className='col s12 m6'> 
                     <button onClick = {this.back} className="waves-effect waves-light btn deep-purple darken-3">
                         Back
                     </button>
                 </div>
-                <div className='col s6'> 
+                <div className='col s12 m6'> 
                     <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.enableButton }>
                         Continue
                     </button>

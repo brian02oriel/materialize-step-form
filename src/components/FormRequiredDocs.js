@@ -4,9 +4,14 @@ import M from "materialize-css";
 
 
 export default class FormRequiredDocs extends Component {
-    state={
-        pid_type: this.props.values.id
+    constructor(props){
+        super(props);
+        this.state={
+            pid_type: this.props.values.id,
+            enableButton:'disabled',
+        }
     }
+    
   componentDidMount(){
     
     M.AutoInit();
@@ -27,9 +32,9 @@ handleIdDocs() {
             <div className="card-action">
               <div className="btn deep-purple darken-3">
                   <span>Upload File</span>
-                  <input type="file"></input>
+                  <input name="pid_back" type="file" onChange = {this.props.handleChange('pid_back')} id="pid_back" value = {this.props.values.pid_back}></input>
               </div>
-               <input onChange = {this.props.handleChange('pid_back')} id="pid_back" value = {this.props.values.pid_back} type="text" className="file-path validate" required/>
+               <input  type="text" className="file-path validate" required/>
             </div>
 
         </div>
@@ -48,10 +53,27 @@ back = e => {
     e.preventDefault();
     this.props.prevStep();
 }
+
+formValid(isValid){ 
+    //console.log(isValid);
+    if(isValid){
+        if(this.state.enableButton !== ''){
+            this.setState({enableButton: ''});
+        }
+        return(<h4> Valido </h4>)
+    } else {
+        if(this.state.enableButton !== 'disabled'){
+            this.setState({enableButton: 'disabled'});
+        }
+        return(<h4> Invalido </h4>)
+    }
+}
+
   render() {
-    const { values, handleChange } = this.props;
+    const { values, handleChange, isValid} = this.props;
     return (
       <div className='container'> 
+       <div>{this.formValid(isValid)}</div>
       <Fragment>
           <div className='row'>
               <div className='file-field input-field col s12 m6'>
@@ -63,9 +85,9 @@ back = e => {
                       <div className="card-action">
                         <div className="btn deep-purple darken-3">
                             <span>Upload File</span>
-                            <input type="file"></input>
+                            <input name="pid_front" type="file" onChange = {handleChange('pid_front')} id="pid_front" value = {values.pid_front}></input>
                         </div>
-                         <input onChange = {handleChange('pid_front')} id="pid_front" value = {values.pid_front} type="text" className="file-path validate" required/>
+                         <input  type="text" className="file-path validate" required/>
                       </div>
 
                   </div>
@@ -85,9 +107,9 @@ back = e => {
                       <div className="card-action">
                         <div className="btn deep-purple darken-3">
                             <span>Upload File</span>
-                            <input type="file"></input>
+                            <input name="presidence" type="file" onChange = {handleChange('presidence')} id="presidence" value = {values.presidence}></input>
                         </div>
-                         <input onChange = {handleChange('presidence')} id="presidence" value = {values.presidence} type="text" className="file-path validate" required/>
+                         <input type="text" className="file-path validate" required/>
                       </div>
 
                   </div>
@@ -100,7 +122,7 @@ back = e => {
                     </button>
                 </div>
                 <div className='col s6'> 
-                    <button onClick = {this.continue} className="waves-effect waves-light btn deep-purple darken-3">
+                    <button onClick = {this.continue} className={ "waves-effect waves-light btn deep-purple darken-3 " + this.state.enableButton }>
                         Continue
                     </button>
                 </div>
