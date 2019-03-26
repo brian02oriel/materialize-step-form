@@ -12,7 +12,7 @@ export default class Confirm extends Component {
     }
 
   render() {
-      const { values:{ firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, presidence} } = this.props;
+      const { values:{ firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, check_residence} } = this.props;
     return (
         <div className='container'>
                 <Fragment>
@@ -53,7 +53,7 @@ export default class Confirm extends Component {
                                      <span class="card-title">Required Docs</span>
                                      <strong><p><h6>Identity Check (front): </h6> {pid_front}  </p></strong>
                                      <strong><p><h6>Identity Check (back): </h6> {pid_back} </p></strong>
-                                     <strong><p><h6>Residence Check: </h6> {presidence}  </p></strong>
+                                     <strong><p><h6>Residence Check: </h6> {check_residence}  </p></strong>
                                      
                                 </div>
                             </div>

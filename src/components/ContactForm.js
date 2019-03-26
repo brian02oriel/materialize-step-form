@@ -41,12 +41,12 @@ export default class ContactForm extends Component {
             if(this.state.enableButton !== ''){
                 this.setState({enableButton: ''});
             }
-            return(<h4> Valido </h4>)
+            return(<h5 className="light-green-text text-darken-2 center-align"> Everything is OK</h5>)
         } else {
             if(this.state.enableButton !== 'disabled'){
                 this.setState({enableButton: 'disabled'});
             }
-            return(<h4> Invalido </h4>)
+            return(<h5 className="deep-orange-text text-darken-4 center-align"> This form has errors </h5>)
         }
     }
 

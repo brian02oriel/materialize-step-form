@@ -12,6 +12,8 @@ import FormRequiredDocs from './FormRequiredDocs';
 import Confirm from './Confirm'
 import Success from './Success'
 
+import '../Content.css';
+
 
 function getSteps() {
   return ['Personal Info(Legal Representative)', 'Contact Info', 'Required Documentation', 'Confirm'];
@@ -39,7 +41,7 @@ class FormStepper extends Component {
     country:'',
     pid_front: '', //third form
     pid_back:'',
-    presidence: ''
+    check_residence: ''
 
    
     
@@ -48,8 +50,8 @@ class FormStepper extends Component {
 
 // Get the steps contents
 getStepContent(step) {
-  const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, presidence} = this.state;
-  const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, presidence};
+  const {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, check_residence} = this.state;
+  const values = {firstName, PlastName, MlastName, birth, gender, nationality, em_country, id, id_number, direction,city, postal, country, pid_front, pid_back, check_residence};
   //console.log(step);  
   switch (step) {
       case 0: 
@@ -199,13 +201,13 @@ handleChange = input => e => {
         }
     break
 
-    case "presidence":
-    console.log("presidence", value);
+    case "check_residence":
+    console.log("check_residence", value);
      if(value){
-       this.validFields3.presidence = true;
+       this.validFields3.check_residence = true;
        this.FormValidation(3, this.validFields3);
         } else{
-          this.validFields3.presidence = false;
+          this.validFields3.check_residence = false;
           this.FormValidation(3, this.validFields3);
         }
 
@@ -239,7 +241,7 @@ validFields2 = {
 validFields3 = {
   pid_front: false, 
   pid_back: false,
-  presidence: false,
+  check_residence: false,
 }
 
 //Validate all the 3 forms
@@ -409,13 +411,13 @@ handleBlur = input => e => {
 
 
   render() {
-    const {containerStyle, contentStyle} = styles;
+    const {containerStyle, stepperStyle} = styles;
     const steps = getSteps();
     const activeStep = this.state.step;
     
     return (
       <Grid style = { containerStyle}>
-        <Stepper activeStep={activeStep}>
+        <Stepper activeStep={activeStep} style={ stepperStyle }>
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
@@ -428,8 +430,8 @@ handleBlur = input => e => {
             );
           })}
         </Stepper>
-        <div className="row" style={contentStyle}>
-        <h4 className="center-align"><span className = "deep-purple-text text-darken-3 center-align"> Tu cuenta puede tardar hasta 4 días hábiles en ser aprobada</span></h4>
+        <div className="row white">
+        <h4 className="center-align"><span className = "deep-purple-text text-darken-3 center-align"> Your account may take up to 4 business days to be approved</span></h4>
             <p className="deep-orange-text text-darken-4 center-align"> The fields with the "(*)" are required</p>
             <div className="col s12">
               <Typography >{this.getStepContent(activeStep)}</Typography>
@@ -444,8 +446,18 @@ const styles = {
   containerStyle:{
     margin: 15,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    background: '#ffff',
+    borderBottom: '5px solid #ffff',
+    borderRadius: '10px'
   },
+
+  stepperStyle:{
+    background: '#ffff',
+    borderBottom: '5px solid #ffff',
+    borderRadius: '10px'
+  }
+
 }
 
 export default FormStepper;
