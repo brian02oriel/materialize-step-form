@@ -23,6 +23,7 @@ class FormStepper extends Component {
   
   state = {
     step:0,
+    idType: "",
    isValidForm1: false,
    isValidForm2: false,
    isValidForm3: false,
@@ -63,6 +64,7 @@ getStepContent(step) {
           values = {values}
           handleBlur = {this.handleBlur}
           isValid = {this.state.isValidForm1}
+          idType = {this.state.idType}
           />
         )
       case 1:
@@ -162,6 +164,7 @@ handleChange = input => e => {
     if(value){
       this.validFields1.id_type = true;
       this.FormValidation(1, this.validFields1);
+      this.setState({idType: value});
     } else{
       this.validFields1.id_type = false;
       this.FormValidation(1, this.validFields1);

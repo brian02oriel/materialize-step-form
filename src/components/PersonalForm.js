@@ -57,27 +57,17 @@ export default class PersonalForm extends Component {
 
     }
 
-    handleSelect= e =>{
-        e.preventDefault();
-        //this.props.handleChange('id');
-        //console.log(this.props.values.id)
-        console.log(e.target.className);
-        this.setState({id_selection: e.target.value});
-    }
-
-    handleIdentity(handleChange, values, handleBlur){
+    handleIdentity(handleChange, values, handleBlur, idType){
         
-        var selection = this.state.id_selection;
-       
        //console.log(selection);
-        if(selection === 'dni') {
+        if(idType === 'dni') {
             return(
                 <div className='col s6'>
                     <label htmlFor="id_number">DNI(*)</label>
                     <input name = "id_number" pattern="[0-9A-Z-]*" onChange = {handleChange('id_number')} onBlur = {handleBlur('id_number')} id="id_number" value = {values.id_number} type="text" className="validate" required placeholder="000000"/>
                 </div>
             )
-        } else if(selection === 'passport'){
+        } else if(idType === 'passport'){
             return(
                 <div className='col s6'>
                      <label htmlFor="id_number">Passport(*)</label>
@@ -102,7 +92,7 @@ formValid(isValid){
     }
 }
   render() {
-      const { values, handleChange, handleBlur, isValid} = this.props;
+      const { values, handleChange, handleBlur, isValid, idType} = this.props;
     return (
         
       <div className='container'> 
@@ -155,7 +145,7 @@ formValid(isValid){
                 </div>
 
                 <div className='input-field col s12 m6'>
-                     <select name="id_type" onChange = {handleChange('id')} onChangeCapture= {this.handleSelect} value = {values.id} required >
+                     <select name="id_type" onChange = {handleChange('id')} value = {values.id} required >
                         <option value="" disabled>Choose your option</option>
                         <option value="dni">DNI</option>
                         <option value="passport">Passport</option>
@@ -171,7 +161,7 @@ formValid(isValid){
                         type = 'em_country'/>
                     <label>Emission Country(*)</label>
                 </div>
-                { this.handleIdentity(this.props.handleChange, this.props.values, this.props.handleBlur) }       
+                { this.handleIdentity(handleChange, values, handleBlur, idType) }       
             </div>  
             <div className='row'>
                 <div className='col s12 m6'> 
