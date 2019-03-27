@@ -67,6 +67,7 @@ getStepContent(step) {
         )
       case 1:
       console.log("Contact form", step);
+      console.log("Id Type", values.id);
         return(
           <ContactForm
           nextStep = {this.nextStep}
@@ -79,6 +80,7 @@ getStepContent(step) {
         )
       case 2:
       console.log("Required Docs form", step);
+      console.log("Id Type", values.id);
         return(
           <FormRequiredDocs
           nextStep = {this.nextStep}
@@ -90,7 +92,8 @@ getStepContent(step) {
           />
         )
       case 3:
-      console.log("Confirm", step);
+      console.log("Confirm form", step);
+      console.log("Id Type", values.id);
       return(
         < Confirm
         nextStep = {this.nextStep}

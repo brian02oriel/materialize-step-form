@@ -20,29 +20,29 @@ export default class Confirm extends Component {
                 <Fragment>
                     <div className='row'>
                         <div className='col s12 m6'>
-                            <div class="card">
-                                <div class="card-content">
-                                     <span class="card-title">Personal Info</span>
-                                     <strong><p><h6>First Name: </h6> {firstName}  </p></strong>
-                                     <strong><p><h6>Paternal Surname: </h6> {PlastName}  </p></strong>
-                                     <strong><p><h6>Maternal Surname: </h6> {MlastName}  </p></strong>
-                                     <strong><p><h6>Birthday: </h6> {birth}  </p></strong>
-                                     <strong><p><h6>Gender: </h6> {gender}  </p></strong>
-                                     <strong><p><h6>Nationality: </h6> {nationality}  </p></strong>
-                                     <strong><p><h6>Emission Country: </h6> {em_country}  </p></strong>
-                                     <strong><p><h6>Personal ID: </h6> {id}  </p></strong>
-                                     <strong><p><h6>ID Number: </h6> {id_number}  </p></strong>
+                            <div className="card">
+                                <div className="card-content">
+                                     <span className="card-title">Personal Info</span>
+                                     <strong><h6>First Name: </h6> </strong> <p> {firstName}  </p>
+                                     <strong><h6>Paternal Surname: </h6> </strong>   <p> {PlastName}  </p>
+                                     <strong><h6>Maternal Surname: </h6> </strong>   <p> {MlastName}  </p>
+                                     <strong><h6>Birthday: </h6></strong>    <p> {birth}  </p>
+                                     <strong><h6>Gender: </h6></strong>  <p> {gender}  </p>
+                                     <strong><h6>Nationality: </h6></strong> <p> {nationality}  </p>
+                                     <strong><h6>Emission Country: </h6></strong>    <p> {em_country}  </p>
+                                     <strong><h6>Personal ID: </h6></strong> <p> {id}  </p>
+                                     <strong><h6>ID Number: </h6> </strong>  <p> {id_number}  </p>
                                 </div>
                             </div>
                         </div>
                         <div className='col s12 m6'>
-                        <div class="card">
-                                <div class="card-content">
-                                     <span class="card-title">Contact Info</span>
-                                     <strong><p><h6>Residence: </h6> {direction}  </p></strong>
-                                     <strong><p><h6>City: </h6> {city}  </p></strong>
-                                     <strong><p><h6>Postal Code: </h6> {postal}  </p></strong>
-                                     <strong><p><h6>Country: </h6> {country}  </p></strong>
+                        <div className="card">
+                                <div className="card-content">
+                                     <span className="card-title">Contact Info</span>
+                                     <strong><h6>Residence: </h6></strong>  <p> {direction}  </p>
+                                     <strong><h6>City: </h6></strong>   <p> {city}  </p>
+                                     <strong><h6>Postal Code: </h6></strong>    <p> {postal}  </p>
+                                     <strong><h6>Country: </h6></strong>    <p> {country}  </p>
                                 </div>
                             </div>
                         </div>
@@ -50,12 +50,12 @@ export default class Confirm extends Component {
                     </div>
                     <div className="row">
                         <div className="col s12">
-                        <div class="card">
-                                <div class="card-content">
-                                     <span class="card-title">Required Docs</span>
-                                     <strong><p><h6>Identity Check (front): </h6> {pid_front}  </p></strong>
-                                     <strong><p><h6>Identity Check (back): </h6> {pid_back} </p></strong>
-                                     <strong><p><h6>Residence Check: </h6> {check_residence}  </p></strong>
+                        <div className="card">
+                                <div className="card-content">
+                                     <span className="card-title">Required Docs</span>
+                                     <strong><h6>Identity Check (front): </h6></strong>    <p> {pid_front}  </p>
+                                     <strong><h6>Identity Check (back): </h6></strong>  <p> {pid_back} </p>
+                                     <strong><h6>Residence Check: </h6></strong>    <p> {check_residence}  </p>
                                      
                                 </div>
                             </div>

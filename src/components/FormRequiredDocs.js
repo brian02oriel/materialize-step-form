@@ -26,15 +26,15 @@ handleIdDocs() {
         return(
             <div className="card">
             <div className="card-content">
-                <span class="card-title"> Identity Check (back)</span>
+                <span className="card-title"> Identity Check (back)</span>
                 <p className="deep-orange-text text-darken-4"> Upload a back picture of your DNI or Passport with good resolution</p>
             </div>
             <div className="card-action">
               <div className="btn deep-purple darken-3">
                   <span>Upload File</span>
-                  <input name="pid_back" type="file" onChange = {this.props.handleChange('pid_back')} id="pid_back" value = {this.props.values.pid_back}></input>
+                  <input name="pid_back" type="file" onChange = {this.props.handleChange('pid_back')} id="pid_back" ></input>
               </div>
-               <input  type="text" className="file-path validate" required/>
+               <input  type="text" className="file-path validate" value = {this.props.values.pid_back} required/>
             </div>
 
         </div>
@@ -79,15 +79,15 @@ formValid(isValid){
               <div className='file-field input-field col s12 m6'>
                   <div className="card">
                       <div className="card-content">
-                          <span class="card-title"> Identity Check (front)</span>
+                          <span className="card-title"> Identity Check (front)</span>
                           <p className="deep-orange-text text-darken-4"> Upload a front picture of your DNI or Passport with good resolution</p>
                       </div>
                       <div className="card-action">
                         <div className="btn deep-purple darken-3">
                             <span>Upload File</span>
-                            <input name="pid_front" type="file" onChange = {handleChange('pid_front')} id="pid_front" value = {values.pid_front}></input>
+                            <input name="pid_front" type="file" onChange = {handleChange('pid_front')} id="pid_front" ></input>
                         </div>
-                         <input  type="text" className="file-path validate" required/>
+                         <input  type="text" value = {values.pid_front} className="file-path validate" required/>
                       </div>
 
                   </div>
@@ -101,15 +101,15 @@ formValid(isValid){
                 <div className="file-field input-field col s12">
                 <div className="card">
                       <div className="card-content">
-                          <span class="card-title"> Residence Check </span>
+                          <span className="card-title"> Residence Check </span>
                           <p className="deep-orange-text text-darken-4"> Upload a service bill at your name to validate the residence on your dni or passport</p>
                       </div>
                       <div className="card-action">
                         <div className="btn deep-purple darken-3">
                             <span>Upload File</span>
-                            <input name="check_residence" type="file" onChange = {handleChange('check_residence')} id="check_residence" value = {values.check_residence}></input>
+                            <input name="check_residence" type="file" onChange = {handleChange('check_residence')} id="check_residence"></input>
                         </div>
-                         <input type="text" className="file-path validate" required/>
+                         <input type="text" className="file-path validate" value = {values.check_residence} required/>
                       </div>
 
                   </div>
