@@ -34,7 +34,7 @@ handleIdDocs() {
                   <span>Upload File</span>
                   <input name="pid_back" type="file" onChange = {this.props.handleChange('pid_back')} id="pid_back" ></input>
               </div>
-               <input  type="text" className="file-path validate" value = {this.props.values.pid_back} required/>
+               <input  type="text" className="file-path validate" readOnly = {this.props.values.pid_back} required/>
             </div>
 
         </div>
@@ -87,7 +87,7 @@ formValid(isValid){
                             <span>Upload File</span>
                             <input name="pid_front" type="file" onChange = {handleChange('pid_front')} id="pid_front" ></input>
                         </div>
-                         <input  type="text" value = {values.pid_front} className="file-path validate" required/>
+                         <input  type="text" readOnly = {values.pid_front} className="file-path validate" required/>
                       </div>
 
                   </div>
@@ -109,7 +109,7 @@ formValid(isValid){
                             <span>Upload File</span>
                             <input name="check_residence" type="file" onChange = {handleChange('check_residence')} id="check_residence"></input>
                         </div>
-                         <input type="text" className="file-path validate" value = {values.check_residence} required/>
+                         <input type="text" className="file-path validate" readOnly = {values.check_residence} required/>
                       </div>
 
                   </div>

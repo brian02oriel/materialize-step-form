@@ -42,10 +42,7 @@ class FormStepper extends Component {
     country:'',
     pid_front: '', //third form
     pid_back:'',
-    check_residence: ''
-
-   
-    
+    check_residence: '' 
 }
 
 
@@ -241,7 +238,7 @@ validFields1 = {
   nationality: false,
   id_type: false,
   em_country: false,
-  id_numer: false
+  id_number: false
 }
 
 validFields2 = {
@@ -257,53 +254,55 @@ validFields3 = {
 }
 
 //Validate all the 3 forms
-FormValidation(form, fields){ 
-  //console.log("Validacion form", form);
-  //console.log(this.validFields1);
-  //console.log("Campos ",fields);
+FormValidation(form, fields){
   switch(form){
     //Casos de validación formulario 1
     case 1:
-    Object.keys(fields).forEach(field =>{
-      //console.log("Recorriendo campos", field, fields[field]);
-  
-      if(fields[field]){
-        //console.log("campo cierto", field);
-        this.setState({isValidForm1: true});
-      } else{
-        //console.log("campo falso", field);
-        this.setState({isValidForm1: false});
-      }
-    })
+    //console.log("campos", Object.entries(fields));
+    //console.log("campos", Object.values(fields).every(field => field === true));
+    if(Object.values(fields).every(field => field === true)){
+      this.setState({isValidForm1: true});
+    } else {
+      this.setState({isValidForm1: false});
+    }
     break
 
     //Casos de validación formulario 2
     case 2:
-    Object.keys(fields).forEach(field =>{
-      //console.log("Recorriendo campos", field, fields[field]);
-  
-      if(fields[field]){
-        //console.log("campo cierto", field);
-        this.setState({isValidForm2: true});
-      } else{
-        //console.log("campo falso", field);
-        this.setState({isValidForm2: false});
-      }
-    })
+    if(Object.values(fields).every(field => field === true)){
+      this.setState({isValidForm2: true});
+    } else {
+      this.setState({isValidForm2: false});
+    }
+
     break
 
     case 3:
-    Object.keys(fields).forEach(field =>{
-      //console.log("Recorriendo campos", field, fields[field]);
-  
-      if(fields[field]){
-        //console.log("campo cierto", field);
+    //console.log("Campos de documentos", Object.keys(fields));
+    //console.log("Campos pid_front", Object.values(fields)[0]);
+    //console.log("Campos check_residence", Object.values(fields)[2]);
+    if(this.state.id === 'dni'){
+      if(Object.values(fields).every(field => field === true)){
         this.setState({isValidForm3: true});
-      } else{
-        //console.log("campo falso", field);
+      } else {
         this.setState({isValidForm3: false});
       }
-    })
+    } else if(this.state.id === 'passport'){
+      this.setState({pid_back: ''});
+      //console.log("entradas", Object.entries(fields));
+      //console.log("clave", Object.entries(fields)[0][1]);
+      //console.log(Object.entries(fields).every((key,value) => key !== "pid_back" && value === true));
+        if( Object.entries(fields)[0][1] && Object.entries(fields)[2][1]){
+          console.log("cierto");
+          this.setState({isValidForm3: true});
+        } else {
+          console.log("false");
+          this.setState({isValidForm3: false});
+        }
+        
+    }
+   
+ 
     break
 
     default:
@@ -423,7 +422,7 @@ handleBlur = input => e => {
 
 
   render() {
-    const {containerStyle, stepperStyle} = styles;
+    const {stepperStyle} = styles;
     const steps = getSteps();
     const activeStep = this.state.step;
     
@@ -455,15 +454,6 @@ handleBlur = input => e => {
 }
 
 const styles = {
-  containerStyle:{
-    margin: 15,
-    alignContent: 'center',
-    justifyContent: 'center',
-    background: '#ffff',
-    borderBottom: '5px solid #ffff',
-    borderRadius: '10px'
-  },
-
   stepperStyle:{
     background: '#ffff',
     borderBottom: '5px solid #ffff',
